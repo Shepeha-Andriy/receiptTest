@@ -1,0 +1,20 @@
+.pl {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
+  &__item {
+    list-style: none;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 35px;
+    padding: 5px;
+
+    &:nth-child(even) {
+      background-color: rgb(199, 194, 194);
+    }
+  }
+}

@@ -1,0 +1,46 @@
+[
+    {
+      "name": "bmw",
+      "price": 10000
+    },
+    {
+      "name": "ford",
+      "price": 20000
+    },
+    {
+      "name": "audi",
+      "price": 30000
+    },
+    {
+      "name": "tesla",
+      "price": 40000
+    },
+    {
+      "name": "dodge",
+      "price": 50000
+    },
+    {
+      "name": "gmc",
+      "price": 60000
+    },
+    {
+      "name": "lambo",
+      "price": 70000
+    },
+    {
+      "name": "merc",
+      "price": 65000
+    },
+    {
+      "name": "bugatti",
+      "price": 110000
+    },
+    {
+      "name": "lincoln",
+      "price": 85000
+    },
+    {
+      "name": "escalade",
+      "price": 90000
+    }
+  ]
