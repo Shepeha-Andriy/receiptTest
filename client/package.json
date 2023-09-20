@@ -22,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "after-commit": "npm run build && cd .. && git add . && git commit -m 'auto build' && git push",
-    "after-commit2": "cd .. && git add . && git commit -m 'auto'"
+    "after-commit2": "cd .. && git add . && git commit -m 'auto' && git push"
   },
   "eslintConfig": {
     "extends": [
