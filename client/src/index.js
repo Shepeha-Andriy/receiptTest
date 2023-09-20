@@ -7,6 +7,7 @@ import { store } from './redux/store'
 
 const BuildTest = 1111
 const BuildTest2 = BuildTest
+console.log(BuildTest2)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
