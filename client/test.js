@@ -20,40 +20,33 @@ const execAsync = promisify(exec);
 const commitName = process.argv[2];
 
 const start = async () => {
-    // await execAsync('npm run build ', (error, stdout, stderr) => {
-    //     if (error) {
-    //         console.error(`exec error: ${error}`);
-    //         console.error(`build error`);
-    //         return;
-    //     }
-        
-    //     console.log('buid success')
-    // });
+    const build = await execAsync('npm run build ');
+    if (typeof build === 'string') {
+        console.log(build)
+    } else {
+        console.log('build success')
+    }
       
     const gitAddRes = await  execAsync('cd .. && git add .');
-      console.log(gitAddRes)
+    if (typeof gitAddRes === 'string') {
+        console.log(gitAddRes)
+    } else {
+        console.log('git commit success')
+    }
 
-    const gitCommitRes = await  execAsync(`git commit -m '${commitName}`, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`exec error: ${error}`);
-          console.error(`git commit fail`);
-          return;
-        }
+    const gitCommitRes = await  execAsync(`git commit -m '${commitName}`);
+    if (typeof gitCommitRes === 'string') {
+        console.log(gitCommitRes)
+    } else {
+        console.log('git commit success')
+    }
       
-        console.log('git commit successfully')
-      });
-      
-    // await  execAsync(`git push`, (error, stdout, stderr) => {
-    //     if (error) {
-    //       console.error(`exec error: ${error}`);
-    //       console.error(`git push fail`);
-    //       return;
-    //     }
-      
-    //     console.log('git push successfully')
-    //   });
-      
-      console.log('success')
+    const gitPushRes = await  execAsync(`git push`);
+    if (typeof gitPushRes === 'string') {
+        console.log(gitPushRes)
+    } else {
+        console.log('git commit success')
+    }
 }
 
 // start()
