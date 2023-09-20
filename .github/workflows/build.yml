@@ -22,4 +22,4 @@ jobs:
       run: cd client && npm install
 
     - name: Build
-      run: cd client && npm run build
+      run: cd client && npm run after-commit
