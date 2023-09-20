@@ -29,10 +29,10 @@ const start = async () => {
         
     //     console.log('buid success')
     // });
-    console.log('1111')
       
-    await  execAsync('cd .. && git add .');
-      console.log('2222')
+    const gitAddRes = await  execAsync('cd .. && git add .');
+      console.log(gitAddRes)
+      
     await  execAsync(`git commit -m '${commitName}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`exec error: ${error}`);
