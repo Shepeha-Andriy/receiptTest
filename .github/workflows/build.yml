@@ -21,5 +21,8 @@ jobs:
     - name: Install dependencies
       run: cd client && npm install
 
+    - name: Auth 
+      run: git config --global user.email "n.vaskiv@medias.com.ua" && git config --global user.name "Build Bot"
+
     - name: Build
       run: cd client && npm run after-commit
