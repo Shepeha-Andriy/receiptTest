@@ -31,7 +31,7 @@ const start = async () => {
     if (typeof gitAddRes === 'string') {
         console.log(gitAddRes)
     } else {
-        console.log('git commit success')
+        console.log('git add . success')
     }
 
     const gitCommitRes = await  execAsync(`git commit -m '${commitName}`);
@@ -45,11 +45,10 @@ const start = async () => {
     if (typeof gitPushRes === 'string') {
         console.log(gitPushRes)
     } else {
-        console.log('git commit success')
+        console.log('git push success')
     }
 }
 
-// start()
 start().then(() => {
     console.log('All commands completed');
   }).catch((error) => {
