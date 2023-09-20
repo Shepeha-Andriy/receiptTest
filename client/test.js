@@ -31,10 +31,17 @@ const start = async () => {
     // });
       
     const gitAddRes = await  execAsync('cd .. && git add .');
-    //   console.log(gitAddRes)
+      console.log(gitAddRes)
 
-    const gitCommitRes = await  execAsync(`git commit -m '${commitName}`);
-    console.log(gitCommitRes)
+    const gitCommitRes = await  execAsync(`git commit -m '${commitName}`, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`exec error: ${error}`);
+          console.error(`git commit fail`);
+          return;
+        }
+      
+        console.log('git commit successfully')
+      });
       
     // await  execAsync(`git push`, (error, stdout, stderr) => {
     //     if (error) {
