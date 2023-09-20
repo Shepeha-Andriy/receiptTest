@@ -4,7 +4,7 @@ const exec = require('child_process')
 const commitName = process.argv[2];
 
 const cmd = `npm run build && cd .. && git add . && git commit -m '${commitName}' && git push`;
-
+//
 exec.exec(cmd, (error, stdout, stderr) => {
     if (error) {
         console.error(`exec error: ${error}`);
