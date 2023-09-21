@@ -23,7 +23,6 @@ jobs:
       run: cd client && npm install
 
     - name: Commit
-      if: steps.changes.outputs.changed == 1
       run: |
           git config user.name github-actions
           git config user.email github-actions@medias.com.ua
