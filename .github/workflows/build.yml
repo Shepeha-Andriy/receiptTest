@@ -22,5 +22,11 @@ jobs:
     - name: Install dependencies
       run: cd client && npm install
 
-    - name: Build
-      run: cd client && npm run after-commit
+    - name: Commit
+      if: steps.changes.outputs.changed == 1
+      run: |
+          git config user.name github-actions
+          git config user.email github-actions@medias.com.ua
+          git add .
+          git commit -m "Building ${{ steps.package.outputs.version }}"
+          git push
