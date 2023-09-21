@@ -1,37 +1,44 @@
-
-name: Build and Deploy
+name: Build pushed changes
 
 on:
   push:
     branches:
-      - main
+     - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+ Build:
+   runs-on: ubuntu-latest
+   steps:
+   
+   - name: Set up Node.js
+     uses: actions/setup-node@v2
+     with:
+       node-version: '18'
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+   - name: Checkout to branch
+     uses: actions/checkout@v4
+     with:
+       ref: main
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+   - name: Get package info
+     id: package
+     uses: codex-team/action-nodejs-package-info@v1.1
 
-    - name: Install dependencies
-      run: cd client && npm install
+   - name: Install dependencies
+     run: cd client && npm install
 
-    - name: Build
-      run: cd client && npm run build
+   - name: Build
+     run: cd client && npm run build
 
-    - name: Commit
-      uses: fastify/github-action-merge-dependabot@v2.1.1
-      with:
-        github-token: ${{ secrets.BOT_TOKEN }}
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@medias.com.ua
-          git add .
-          git commit -m "Building ${{ steps.package.outputs.version }}"
-          git push
+   - name: Check branch changes
+     id: changes
+     uses: UnicornGlobal/has-changes-action@v1.0.11
+
+   - name: Commit
+     if: steps.changes.outputs.changed == 1
+     run: |
+         git config user.name github-actions
+         git config user.email github-actions@medias.com.ua
+         git add .
+         git commit -m "Building ${{ steps.package.outputs.version }}"
+         git push
