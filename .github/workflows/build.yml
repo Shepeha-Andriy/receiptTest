@@ -19,11 +19,7 @@ jobs:
      uses: actions/checkout@v4
      with:
        ref: main
-
-  #  - name: Get package info
-  #    id: package
-  #    uses: codex-team/action-nodejs-package-info@v1.1
-
+       
    - name: Install dependencies
      run: cd client && npm install
 
