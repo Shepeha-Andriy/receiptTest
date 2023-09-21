@@ -35,7 +35,7 @@ jobs:
   #    uses: codex-team/action-nodejs-package-info@v1.1
 
    - name: Install dependencies
-     run: npm install
+     run: cd client && npm install
 
    - name: Build
      run: cd client && npm install
