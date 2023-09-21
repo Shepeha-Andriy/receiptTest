@@ -1,28 +1,49 @@
-name: Build and Deploy
+name: Build pushed changes
 
 on:
-  push:
-    branches:
-      - main
+ pull_request:
+  types:
+    - closed
+  branches:
+    - master
+ push:
+   branches:
+    - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+ Build:
+   runs-on: ubuntu-latest
+   steps:
+   
+   - name: Set up Node.js
+     uses: actions/setup-node@v2
+     with:
+       node-version: '18'
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+   - name: Checkout to branch
+     uses: actions/checkout@v4
+     with:
+       ref: master
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+   - name: Get package info
+     id: package
+     uses: codex-team/action-nodejs-package-info@v1.1
 
-    - name: Install dependencies
-      run: cd client && npm install
+   - name: Install dependencies
+     run: npm install
 
-    - name: Auth 
-      run: git config --global user.email "n.vaskiv@medias.com.ua" && git config --global user.name "Build Bot"
+   - name: Build
+     run: npm run build
 
-    - name: Build
-      run: cd client && npm run after-commit
+   - name: Check branch changes
+     id: changes
+     uses: UnicornGlobal/has-changes-action@v1.0.11
+
+   - name: Commit
+     if: steps.changes.outputs.changed == 1
+     run: |
+         git config user.name github-actions
+         git config user.email github-actions@medias.com.ua
+         git add .
+         git commit -m "Building ${{ steps.package.outputs.version }}"
+         git push
