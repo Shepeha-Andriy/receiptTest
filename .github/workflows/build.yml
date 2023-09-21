@@ -38,7 +38,7 @@ jobs:
      run: cd client && npm install
 
    - name: Build
-     run: cd client && npm install
+     run: cd server && npm install
 
    - name: Check branch changes
      id: changes
